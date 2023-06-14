@@ -124,7 +124,7 @@ public class quadrilatere extends Forme {
 
     // Cette méthode permet de définir le type de figure
     @Override
-    public String type() {
+    public String typeForme() {
         try {
             return "Q";
         } catch (Exception e) {
