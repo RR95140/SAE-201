@@ -139,7 +139,7 @@ public class triangles extends Forme {
 
     // Cette méthode permet de définir le type de figure
     @Override
-    public String type() {
+    public String typeForme() {
         try {
             return "T";
         } catch (Exception e) {
