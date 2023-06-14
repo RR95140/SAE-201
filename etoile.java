@@ -1,63 +1,73 @@
-public void testDessiner() {
-        // Création des points pour le chapeau
-        PointPlan p1 = new PointPlan(0, 0);
-        PointPlan p2 = new PointPlan(2, 0);
-        PointPlan p3 = new PointPlan(1, 1);
+import ardoise.Forme;
+import ardoise.PointPlan;
+import ardoise.Segment;
 
-        // Création du chapeau
-        Chapeaux chapeau = new Chapeaux("Chapeau", p1, p2, p3);
+import java.util.ArrayList;
 
-        // Appel de la méthode dessiner()
-        ArrayList<Segment> segments = chapeau.dessiner();
+public class etoile extends Forme {
+    private chapeaux c1;
+    private chapeaux c2;
+    private chapeaux c3;
+    private chapeaux c4;
+    private PointPlan point1;
+    private PointPlan point2;
+    private PointPlan point3;
+    private PointPlan point4;
+    private PointPlan point5;
+    private PointPlan point6;
+    private PointPlan point7;
+    private PointPlan point8;
 
-        // Vérification du nombre de segments
-        assertEquals(2, segments.size());
+    //Constructeur d'étoiles
+    public etoile(PointPlan p1, PointPlan p2, PointPlan p3, PointPlan p4, PointPlan p5, PointPlan p6, PointPlan p7, PointPlan p8) {
+        this.point1 = p1;
+        this.point2 = p2;
+        this.point3 = p3;
+        this.point4 = p4;
+        this.point5 = p5;
+        this.point6 = p6;
+        this.point7 = p7;
+        this.point8 = p8;
 
-        // Vérification des coordonnées des segments
-        Segment segment1 = segments.get(0);
-        assertEquals(p1, segment1.getPointDepart());
-        assertEquals(p2, segment1.getPointArrivee());
-
-        Segment segment2 = segments.get(1);
-        assertEquals(p2, segment2.getPointDepart());
-        assertEquals(p3, segment2.getPointArrivee());
+        this.c1 = new chapeaux("branche n°1", this.point1, this.point2, this.point3);
+        this.c2 = new chapeaux("branche n°2", this.point3, this.point4, this.point5);
+        this.c3 = new chapeaux("branche n°3", this.point5, this.point6, this.point7);
+        this.c4 = new chapeaux("branche n°4", this.point7, this.point8, this.point1);
     }
 
-    @Test
-    public void testDeplacer() {
-        // Création des points pour le chapeau
-        PointPlan p1 = new PointPlan(0, 0);
-        PointPlan p2 = new PointPlan(2, 0);
-        PointPlan p3 = new PointPlan(1, 1);
 
-        // Création du chapeau
-        Chapeaux chapeau = new Chapeaux("Chapeau", p1, p2, p3);
+    
+    //Définition des méthodes
+    
+    //Permet de déplacer les points de la figure
+    public void deplacer(int x, int y) {
+        point1.deplacer(x, y);
+        point2.deplacer(x, y);
+        point3.deplacer(x, y);
+        point4.deplacer(x, y);
+        point5.deplacer(x, y);
+        point6.deplacer(x, y);
+        point7.deplacer(x, y);
+        point8.deplacer(x, y);
+    }
+    
+    
+    // Permet de dessiner la figure
+    public ArrayList<Segment> dessiner() {
+        ArrayList<Segment> segments = new ArrayList<Segment>();
 
-        // Déplacement du chapeau
-        chapeau.deplacer(5, 10);
+        segments.addAll(c1.dessiner());
+        segments.addAll(c2.dessiner());
+        segments.addAll(c3.dessiner());
+        segments.addAll(c4.dessiner());
 
-        // Vérification des nouvelles coordonnées des points
-        assertEquals(5, chapeau.getChapeauPoint1().getX());
-        assertEquals(10, chapeau.getChapeauPoint1().getY());
+        System.out.println("Les segments des étoiles ont été tracés.");
 
-        assertEquals(7, chapeau.getChapeauPoint2().getX());
-        assertEquals(10, chapeau.getChapeauPoint2().getY());
-
-        assertEquals(6, chapeau.getChapeauPoint3().getX());
-        assertEquals(11, chapeau.getChapeauPoint3().getY());
+        return segments;
     }
 
-    @Test
-    public void testTypeForme() {
-        // Création des points pour le chapeau
-        PointPlan p1 = new PointPlan(0, 0);
-        PointPlan p2 = new PointPlan(2, 0);
-        PointPlan p3 = new PointPlan(1, 1);
 
-        // Création du chapeau
-        Chapeaux chapeau = new Chapeaux("Chapeau", p1, p2, p3);
-
-        // Vérification du type de forme
-        assertEquals("C", chapeau.typeForme());
+    public String type() {
+        return "GF";
     }
 }
