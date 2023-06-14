@@ -222,7 +222,7 @@ public class etoile extends Forme {
     }
 
     // Cette méthode permet de définir le type de figure
-    public String type() {
+    public String typeForme() {
         try {
             return "GF";
         } catch (Exception e) {
