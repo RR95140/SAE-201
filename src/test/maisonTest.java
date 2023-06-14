@@ -13,23 +13,23 @@ public class maisonTest {
 
     public void testConstructeurAvecParametres() {
         // Création des points de la maison
-        PointPlan pSuperieurGauche = new PointPlan(0, 0);
-        PointPlan pInferieurDroit = new PointPlan(4, 4);
+        PointPlan PSG = new PointPlan(0, 0);
+        PointPlan PID = new PointPlan(4, 4);
 
         // Création d'une maison avec des paramètres
-        maison maison = new maison("Ma Maison", pSuperieurGauche, pInferieurDroit, 2, 2, 2);
+        maison maMaison = new maison("Ma Maison", PSG, PID, 2, 2, 2);
 
         // Vérification des valeurs des attributs
-        Assert.assertEquals("Ma Maison", maison.getNom());
-        Assert.assertNotNull(maison.getRectangle());
-        Assert.assertNotNull(maison.getPorte());
-        Assert.assertNotNull(maison.getToit());
-        Assert.assertEquals(pSuperieurGauche, maison.getpSuperieurGauche());
-        Assert.assertEquals(pInferieurDroit, maison.getpInferieurDroit());
-        Assert.assertNotNull(maison.getpSuperieurDroit());
-        Assert.assertEquals(2, maison.getHauteurToit());
-        Assert.assertEquals(2, maison.getHauteurPorte());
-        Assert.assertEquals(2, maison.getLargeurPorte());
+        Assert.assertEquals("Ma Maison", maMaison.getNom());
+        Assert.assertNotNull(maMaison.getRectangle());
+        Assert.assertNotNull(maMaison.getPorte());
+        Assert.assertNotNull(maMaison.getToit());
+        Assert.assertEquals(PSG, maMaison.getPSG());
+        Assert.assertEquals(PID, maMaison.getPID());
+        Assert.assertNotNull(maMaison.getPSD());
+        Assert.assertEquals(2, maMaison.getHauteurToit());
+        Assert.assertEquals(2, maMaison.getHauteurPorte());
+        Assert.assertEquals(2, maMaison.getLargeurPorte());
     }
 
     @Test
@@ -45,9 +45,9 @@ public class maisonTest {
         Assert.assertNotSame(maisonRef.getRectangle(), maisonCopie.getRectangle());
         Assert.assertNotSame(maisonRef.getPorte(), maisonCopie.getPorte());
         Assert.assertNotSame(maisonRef.getToit(), maisonCopie.getToit());
-        Assert.assertNotSame(maisonRef.getpSuperieurGauche(), maisonCopie.getpSuperieurGauche());
-        Assert.assertNotSame(maisonRef.getpInferieurDroit(), maisonCopie.getpInferieurDroit());
-        Assert.assertNotSame(maisonRef.getpSuperieurDroit(), maisonCopie.getpSuperieurDroit());
+        Assert.assertNotSame(maisonRef.getPSG(), maisonCopie.getPSG());
+        Assert.assertNotSame(maisonRef.getPID(), maisonCopie.getPID());
+        Assert.assertNotSame(maisonRef.getPSD(), maisonCopie.getPSD());
         Assert.assertEquals(maisonRef.getHauteurToit(), maisonCopie.getHauteurToit());
         Assert.assertEquals(maisonRef.getHauteurPorte(), maisonCopie.getHauteurPorte());
         Assert.assertEquals(maisonRef.getLargeurPorte(), maisonCopie.getLargeurPorte());
@@ -56,10 +56,10 @@ public class maisonTest {
     @Test
     public void testDessiner() {
         // Création d'une maison avec des paramètres
-        maison maison = new maison("Ma Maison", new PointPlan(0, 0), new PointPlan(4, 4), 2, 2, 2);
+        maison maMaison = new maison("Ma Maison", new PointPlan(0, 0), new PointPlan(4, 4), 2, 2, 2);
 
         // Appel de la méthode dessiner()
-        ArrayList<Segment> segments = maison.dessiner();
+        ArrayList<Segment> segments = maMaison.dessiner();
 
         // Vérification du résultat
         Assert.assertEquals(10, segments.size()); // Vérifier le nombre de segments retournés
@@ -70,24 +70,24 @@ public class maisonTest {
     @Test
     public void testDeplacer() {
         // Création d'une maison avec des paramètres
-        maison maison = new maison("Ma Maison", new PointPlan(0, 0), new PointPlan(4, 4), 2, 2, 2);
+        maison maMaison = new maison("Ma Maison", new PointPlan(0, 0), new PointPlan(4, 4), 2, 2, 2);
 
         // Déplacement de la maison
-        maison.deplacer(2, 2);
+        maMaison.deplacer(2, 2);
 
         // Vérification du déplacement des points
-        Assert.assertEquals(4, maison.getRectangle().getPointSuperieurGauche().getAbscisse());
-        Assert.assertEquals(4, maison.getRectangle().getPointSuperieurGauche().getOrdonnee());
+        Assert.assertEquals(4, maMaison.getRectangle().getPSG().getAbscisse());
+        Assert.assertEquals(4, maMaison.getRectangle().getPSG().getOrdonnee());
         // Vérification du déplacement des autres points...
     }
 
     @Test
     public void testTypeForme() {
         // Création d'une maison avec des paramètres
-        maison maison = new maison("Ma Maison", new PointPlan(0, 0), new PointPlan(4, 4), 2, 2, 2);
+        maison maMaison = new maison("Ma Maison", new PointPlan(0, 0), new PointPlan(4, 4), 2, 2, 2);
 
         // Appel de la méthode typeForme()
-        String type = maison.typeForme();
+        String type = maMaison.typeForme();
 
         // Vérification du résultat
         Assert.assertEquals("GF", type);
